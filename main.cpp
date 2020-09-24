@@ -1,9 +1,9 @@
 #include <iostream>
-#include <thread>
+//#include <thread>
 #include <string>
-#include "timer.hh"
+//#include "timer.hh"
 #include "Matrix.hh"
-#include "ThreadPool.hh"
+//#include "ThreadPool.hh"
 
 // Multiplicación serial
 Matrix mult(const Matrix &a, const Matrix &b)
@@ -23,7 +23,7 @@ Matrix mult(const Matrix &a, const Matrix &b)
 
   return result;
 }
-
+/*
 void computeCell(const Matrix &a, const Matrix &b, size_t ra, size_t cb, double &result)
 {
   result = 0.0;
@@ -31,7 +31,8 @@ void computeCell(const Matrix &a, const Matrix &b, size_t ra, size_t cb, double 
   {
     result += a.at(ra, nc) * b.at(nc, cb);
   }
-}
+} */
+/*
 
 // Calcular celda por celda
 Matrix mult2(const Matrix &a, const Matrix &b)
@@ -56,8 +57,8 @@ Matrix mult2(const Matrix &a, const Matrix &b)
     t.join();
   }
   return result;
-}
-
+}*/
+/*
 void computeCol(const Matrix &a, const Matrix &b, size_t col, Matrix &result)
 {
   for (size_t r = 0; r < a.size(); r++)
@@ -67,8 +68,8 @@ void computeCol(const Matrix &a, const Matrix &b, size_t col, Matrix &result)
       result.at(r, col) += a.at(r, c) * b.at(c, col);
     }
   }
-}
-
+}*/
+/*
 //Calcular columna por columna
 Matrix mult3(const Matrix &a, const Matrix &b)
 {
@@ -84,8 +85,8 @@ Matrix mult3(const Matrix &a, const Matrix &b)
     t.join();
   }
   return result;
-}
-
+}*/
+/*
 Matrix mult5(const Matrix &a, const Matrix &b)
 {
   assert(a.size() == b.size());
@@ -96,8 +97,8 @@ Matrix mult5(const Matrix &a, const Matrix &b)
       pool.enqueue([&result, &a, &b, c]() { computeCol(a, b, c, result); });
   }
   return result;
-}
-
+}*/
+/*
 void bench()
 {
   cout << "n,\t"
@@ -134,9 +135,14 @@ void bench()
     cout << endl;
     i = i + 5;
   }
-}
+}*/
 
-int main()
+int main(int argc, char **argv)
 {
-  bench();
+  int i = stoi(argv[1]);
+  Matrix m(i);
+  m.fill();
+  Matrix n(i);
+  n.fill();
+  Matrix r = mult(m, n);
 }
