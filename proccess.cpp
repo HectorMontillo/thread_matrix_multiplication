@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "timer.hh"
 #include "Matrix.hh"
 #include <stdio.h>
 #include <unistd.h>
