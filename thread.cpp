@@ -20,6 +20,7 @@ Matrix mult5(const Matrix &a, const Matrix &b)
   assert(a.size() == b.size());
   Matrix result(a.size());
   {
+
     ThreadPool pool(4);
     for (size_t c = 0; c < b.size(); c++)
       pool.enqueue([&result, &a, &b, c]() { computeCol(a, b, c, result); });
@@ -33,5 +34,7 @@ int main(int argc, char **argv)
   m.fill();
   Matrix n(i);
   n.fill();
+  Timer t;
   Matrix r = mult5(m, n);
+  cout << t.elapsed() << "\t";
 }

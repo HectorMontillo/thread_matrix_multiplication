@@ -33,5 +33,7 @@ int main(int argc, char **argv)
   m.fill();
   Matrix n(i);
   n.fill();
+  Timer t;
   Matrix r = mult5(m, n);
+  cout << t.elapsed() << "\t";
 }

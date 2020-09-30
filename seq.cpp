@@ -1,12 +1,13 @@
 #include <iostream>
 #include <string>
 #include "Matrix.hh"
+#include "timer.hh"
 
 // Multiplicación serial
 Matrix mult(const Matrix &a, const Matrix &b)
 {
   Matrix result(a.size());
-
+  Timer t;
   for (int col = 0; col < b.size(); col++)
   {
     for (int r = 0; r < a.size(); r++)
@@ -17,6 +18,7 @@ Matrix mult(const Matrix &a, const Matrix &b)
       }
     }
   }
+  cout << t.elapsed() << "\t";
 
   return result;
 }

@@ -6,6 +6,7 @@
 #include <sys/shm.h>
 #include <sys/stat.h>
 #include <wait.h>
+#include "timer.hh"
 
 unsigned int sizeof_dm(int rows, int cols, size_t sizeElement)
 {
@@ -72,6 +73,7 @@ void mult6(const Matrix &a, const Matrix &b)
   create_index((void **)matrix, a.size(), a.size(), sizeof(int));
 
   pid_t pid = fork();
+  Timer t;
   //pid_t process_1, process_2, process_3, process_4;
   if (pid)
   {
@@ -122,6 +124,7 @@ void mult6(const Matrix &a, const Matrix &b)
     wait(NULL);
     wait(NULL);
     wait(NULL);
+    cout << t.elapsed() << "\t";
     //print_matriz(matrix, a.size(), b.size());
     //cout << "Finalizado correctamente" << endl;
   }
@@ -134,6 +137,7 @@ int main(int argc, char **argv)
   m.fill();
   Matrix n(i);
   n.fill();
+
   mult6(m, n);
 
   //cout << "Todo listo: " << i << endl;
